@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>防抖函数</title>
+    <style>
+        .container{
+            width: 140px;
+            height: 80px;
+            font-size: 0;
+            margin: 30px auto 0;
+        }
+        #result{
+            display:inline-block;
+            width:80px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bolder;
+            vertical-align: bottom;
+            box-sizing: border-box;
+        }
+        #btn{
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 40px;
+        }
+    </style>
+    <!-- <link rel="stylesheet" href= "CSS文件路径"> -->
+</head>
+    
+<body>
+    <div class="container">
+        <input type="text" id="result" value="1">
+        <button id="btn">+</button>
+    </div>
+    
+    
+    <script src="./debounced.js"></script>
+    <script>
+        
+        var oResult=document.getElementById("result");
+        function fa(){
+            var n=Number(oResult.value)+1
+            oResult.value=n
+        }
+        
+        var FA=debounced(fa,1000,false);
+       
+        document.getElementById("btn").onclick=FA;
+        
+    </script>
+</body>
+</html>
