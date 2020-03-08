@@ -7,7 +7,7 @@
     <title>防抖函数</title>
     <style>
         .container{
-            width: 140px;
+            width: 200px;
             height: 80px;
             font-size: 0;
             margin: 30px auto 0;
@@ -23,7 +23,7 @@
             vertical-align: bottom;
             box-sizing: border-box;
         }
-        #btn{
+        .btn{
             width: 60px;
             height: 40px;
             text-align: center;
@@ -35,9 +35,12 @@
 </head>
     
 <body>
+    <p>不停地点击减号，只有第一次点击有用，1秒之后点击第二次才有用</p>
+    <p>不停地点击加号，只有最后一次点击有用，1秒之后点击第二次才有用</p>
     <div class="container">
+        <button class="btn min">-</button>
         <input type="text" id="result" value="1">
-        <button id="btn">+</button>
+        <button class="btn add">+</button>
     </div>
     
     
@@ -46,13 +49,16 @@
         
         var oResult=document.getElementById("result");
         function fa(){
+            var n=Number(oResult.value)-1
+            oResult.value=n
+        }
+        function fb(){
             var n=Number(oResult.value)+1
             oResult.value=n
         }
-        
-        var FA=debounced(fa,1000,false);
-       
-        document.getElementById("btn").onclick=FA;
+      
+        document.getElementsByClassName("btn")[0].onclick=debounced(fa,1000,true);
+        document.getElementsByClassName("btn")[1].onclick=debounced(fb,1000,false);
         
     </script>
 </body>
